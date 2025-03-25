@@ -1,0 +1,131 @@
+<!doctype html> 
+<html lang="fr"> 
+   <head> 
+      <meta charset="utf-8">
+      <meta name="description" content="Postuler à une offre de stage">
+      <title>Lebonplan</title>
+      <link rel="stylesheet" href="inscription_etu.css">
+      <link rel="verif" href="inscription_pil.js">
+      <link rel="icon" href="./logo_chap.png">
+    </head> 
+    <body>
+    <header style="text-align: center; padding: 20px;">
+        <img src="file:./logo.png" alt="Logo" style="width: 500px;"> 
+    </header>
+    <header>
+        <div class="navbar">
+            <!-- Bouton hamburger -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">&#9776;</button>
+            
+            <nav class="nav-items-container">
+                <ul class="main-menu" id="main-menu">
+                    <li class="menu-item"><a href="file:./accueil.HTML" class="top-level-entry active">Accueil</a></li>
+                    <li class="menu-item"><a href="file:./contact.HTML" class="top-level-entry">Contact</a></li>
+                </ul>
+
+                <!-- Liens de Connexion et S'inscrire à droite -->
+                <div class="auth-links">
+                    <a href="file:./choix_compte_conn.html" class="navitem">Connexion</a>
+                    <a href="file:./choix_compte_insc.html" class="button">S'inscrire</a>
+                </div>
+            </nav>
+        </div>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="file:./accueil.HTML">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="file:./choix_compte_insc.html">Inscription</a></li>
+            </ol>
+        </nav>
+        <br>
+     </header>
+
+    <main>
+        <section class="form-section">
+            <section class="form-section-flou">
+                <h1 class="text-center">S'inscrire</h1>
+                <p class="text-justify">Vous n’avez pas de compte ? Créons en un ensemble ! C’est facile, rapide et gratuit !</p>
+                <article>
+                    <form>
+                        <label>Civilité<br>
+                            <select name="title" style="width: 100%">
+                                <option value="ms">Madame</option>
+                                <option value="mr">Monsieur</option>   
+                            </select>
+                        </label>
+                        <br><br>
+                        <label>Nom*<br><input style="width: 99%" name="lastname" type="text" size="50" value="" required></label>
+                        <br><br>
+                        <label>Prénom*<br><input style="width: 99%" name="surname" type="text" size="50" value="" required></label>
+                        <br><br>
+                        <label>Adresse mail*<br><input style="width: 99%" name="email" type="email" size="50" value="" required></label>
+                        <br><br>
+                        <label>Mot de passe*<br><input style="width: 99%" name="password" type="password" size="50" value="" required></label>
+                        <div class="small grey"><em>Pour un mot de passe sécurisé, pensez à utiliser des majuscules, des chiffres et des caractères spéciaux.</em></div>
+                        <br><br>
+                        <div class="button-container">
+                          <button id="submit-btn" type="submit" disabled>C'est parti !</button>&nbsp;<button type="reset">Réinitialiser</button>
+                        </div>
+                        <br><br>
+                        <div class="small grey"><em>*Données indispensables à l'envoie du formulaire.</em></div>
+                        <div class="small grey"><em>En cliquant sur "C'est parti !", vous acceptez les <a href="file:./cgu.html">conditions générales</a> et déclarez avoir pris connaissance de la <a href="file:./protection.html">politique de protection des données</a> de notre site.</em></div>
+                        <div class="small grey"><em>Nous nous concervons le droit de supprimer automatiquement un compte innactif depuis 365 jours après un rappel, conformément à la <a href="file:./concervation.html">politique de concervation des données</a> de notre site.</em></div>       
+                      </form>
+                </article>
+            </section>
+        </section>
+    </main>
+</body>
+<footer class="footer">
+    <div class="footer-container">
+      <!-- Colonne 1 : Logos -->
+      <div class="footer-column">
+        <img src="logo_chap.png" alt="Logo principal" class="footer-logo">
+      </div>
+  
+      <!-- Colonne 2 : Coordonnées -->
+      <div class="footer-column">
+        <h3>Coordonnées</h3>
+        <a  style='color:#ffffff'href="https://www.google.fr/maps/place/Campus+CESI/@43.5792319,3.9432547,794m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12b6afdaa52cccbf:0xa4dd1993e0746bd!8m2!3d43.5792281!4d3.9481256!16s%2Fg%2F1v202y6s?entry=ttu&g_ep=EgoyMDI1MDIwMi4wIKXMDSoASAFQAw%3D%3D">Immeuble Le Quatrième Zone Aéroportuaire de Montpellier Méditerranée, 34130 Mauguio</a>
+        <p><i class="fa-solid fa-envelope"></i> contact@cesi.fr</p>
+        <p><i class="fa-solid fa-phone"></i> +33 6 12 34 56 78</p>
+      </div>
+  
+      <!-- Colonne 3 : Navigation -->
+      <div class="footer-column">
+        <h3>Navigation</h3>
+        <ul class="footer-links">
+          <li><a href="file:./coockies.html">Cookies</a></li>
+          <li><a href="file:./faq.html">F.A.Q</a></li>
+          <li><a href="file:./cgu.html">Conditions générales</a></li>
+          <li><a href="file:./protection.html">Politique de protection des données</a></li>
+          <li><a href="file:./mentions_legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+  
+      <!-- Colonne 4 : Réseaux sociaux -->
+      <div class="footer-column">
+        <h3>Suivez-nous</h3>
+        <div class="social-buttons">
+          <a class="social-button twitter" href="https://x.com/cesi_officiel?s=21" target="_blank"><i class="fa-brands fa-twitter">
+            <img class="twitter" 
+                        src="file:./Twitter.png"></i></a>
+            <a class="social-button tiktok" href=" https://www.tiktok.com/@bde_cesi_mtp?_t=ZN-8tezCXXQ3tO&_r=1" target="_blank"><i class="fa-brands fa-tiktok">
+                    <img class="TikTok" 
+                        src="file:./tiktok.png"></i></a>
+            <a class="social-button instagram" href=" https://www.instagram.com/bde.cesi.montpellier?igsh=MWVhaWFvNGNvcDZuNw==" target="_blank"><i class="fa-brands fa-instagram">
+            <img class="instagram" 
+                        src="file:./instagram.png"></i></a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Bas de page -->
+    <div class="footer-bottom">
+      <p>Copyright © 2025 - Tous droits réservés. <a href="file:./mentions_legales.html">Mentions légales</a></p>
+    </div>
+  </footer>
+
+<!-- Lien vers le fichier JavaScript -->
+<script src="inscription_etu.js"></script> 
+
+</html>
