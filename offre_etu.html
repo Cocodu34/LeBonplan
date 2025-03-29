@@ -1,15 +1,17 @@
-<!doctype html> 
-<html lang="fr"> 
-   <head> 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta charset="utf-8">
       <meta name="description" content="Postuler à une offre de stage">
       <title>Lebonplan</title>
       <link rel="stylesheet" href="offre_etu.css">
-      <link rel="icon" href="./logo_chap.png">
+      <link rel="icon" href="./images/logo_chap.png">
     </head> 
     <body>
     <header style="text-align: center; padding: 20px;">
-        <img src="file:./logo.png" alt="Logo" style="width: 500px;"> 
+        <img src="./images/logo.png" alt="Logo" style="width: 500px;"> 
     </header>
     <header>
         <div class="navbar">
@@ -18,68 +20,68 @@
             
             <nav class="nav-items-container">
                 <ul class="main-menu" id="main-menu">
-                    <li class="menu-item"><a href="file:./accueil_etu.HTML" class="top-level-entry ">Accueil</a></li>
-                    <li class="menu-item"><a href="file:./contact_etu.HTML" class="top-level-entry">Contact</a></li>
-                    <li class="menu-item"><a href="file:./profil.HTML" class="top-level-entry">Profil</a></li>
-                    <li class="menu-item"><a href="file:./recherche_etu.HTML" class="top-level-entry active">Offre</a></li>
+                    <li class="menu-item"><a href="./accueil_etu.HTML" class="top-level-entry ">Accueil</a></li>
+                    <li class="menu-item"><a href="./contact_etu.HTML" class="top-level-entry">Contact</a></li>
+                    <li class="menu-item"><a href="./profil.HTML" class="top-level-entry">Profil</a></li>
+                    <li class="menu-item"><a href="./recherche_etu.HTML" class="top-level-entry active">Offre</a></li>
                 </ul>
 
                 <!-- Liens de Connexion et S'inscrire à droite -->
                 <div class="auth-links">
-                    <a href="file:./accueil.html" class="button">Déconnexion</a>
+                    <a href="./accueil.html" class="button">Déconnexion</a>
                 </div>
             </nav>
         </div>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="file:./recherche_etu.HTML">Offre</a></li>
+                <li class="breadcrumb-item"><a href="./recherche_etu.HTML">Offre</a></li>
             </ol>
         </nav>
         <br>
      </header>
      <main>
-   <body>
-    <br><br><br><br>
-    <title style="color:#000000">Offres de stage pour vous</title>
-
-    <div class="container">
-    <div class="box">
-      <h2> Société:Kaleo|</h2>
-        <h2 class="title">Stage en Cyber sécurité</h2>
-        
-    
-        <a href= "Postuler.html" class="search-button" style="color: rgb(255, 255, 255); font-weight: bold; display: inline-block; padding: 11px 20px; cursor: pointer; background-color: rgb(18, 129, 225); border-radius: 5px; border: none; text-decoration: none; text-align: center;">
-          voir l'offre
-        </a>
-        
+      <h1 class="titre-page">Offres de stage pour vous</h1>
+      <div class="container">
+      <div >
+          <?php
           
-    </div>
-  </div>
-    
-
-
-    <div class="container">
-    <div class="box">
-      <h2> Société:BtPaye|</h2>
-        <h2 class="title">Alternace BTP </h2>
-        <a href= "Postuler.html" class="search-button" style="color: rgb(255, 255, 255); font-weight: bold; display: inline-block; padding: 11px 20px; cursor: pointer; background-color: rgb(18, 129, 225); border-radius: 5px; border: none; text-decoration: none; text-align: center;">
-          voir l'offre
-        </a>
-        
-    </div>
-  </div>
-    
-
-
-
-    
-</main>
+          $host = "localhost";
+          $dbname = "stage"; 
+          $username = "root"; 
+          $password = "root";
+  
+          try {
+              $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+              $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          } catch (PDOException $e) {
+              die("Erreur de connexion : " . $e->getMessage());
+          }
+  
+          $query = "SELECT a.ID_ano, a.description, e.nom_ent, e.activite
+                    FROM Annonce a
+                    JOIN Entreprise e ON a.ID_ent = e.ID_ent";
+          $stmt = $pdo->prepare($query);
+          $stmt->execute();
+          $annonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          foreach ($annonces as $annonce) {
+              echo '<div class="annonce">';  // Conteneur principal pour garder l'affichage vertical
+              echo '    <div class="box">';  // Ajout du cadre gris
+              echo '        <h2 class="annonce-title">Société: ' . htmlspecialchars($annonce['nom_ent']) . ' |</h2>';
+              echo '        <p class="annonce-description">' . htmlspecialchars($annonce['description']) . '</p>';
+              echo '        <button class="voir-offre-btn">Voir l\'offre</button>';
+              echo '    </div>';
+              echo '</div>';
+          }
+          ?>
+      </div>
+      </div>
+  </main>
     </body> 
     <footer class="footer">
       <div class="footer-container">
         <!-- Colonne 1 : Logos -->
         <div class="footer-column">
-          <img src="logo_chap.png" alt="Logo principal" class="footer-logo">
+          <img src="images/logo_chap.png" alt="Logo principal" class="footer-logo">
         </div>
     
         <!-- Colonne 2 : Coordonnées -->
@@ -94,11 +96,11 @@
         <div class="footer-column">
           <h3>Navigation</h3>
           <ul class="footer-links">
-            <li><a href="file:./coockies_etu.html">Cookies</a></li>
-            <li><a href="file:./faq_etu.html">F.A.Q</a></li>
-            <li><a href="file:./cgu_etu.html">Conditions générales</a></li>
-            <li><a href="file:./protection_etu.html">Politique de protection des données</a></li>
-            <li><a href="file:./mentions_legales_etu.html">Mentions légales</a></li>
+            <li><a href="./coockies_etu.html">Cookies</a></li>
+            <li><a href="./faq_etu.html">F.A.Q</a></li>
+            <li><a href="./cgu_etu.html">Conditions générales</a></li>
+            <li><a href="./protection_etu.html">Politique de protection des données</a></li>
+            <li><a href="./mentions_legales_etu.html">Mentions légales</a></li>
           </ul>
         </div>
     
@@ -108,31 +110,23 @@
           <div class="social-buttons">
             <a class="social-button twitter" href="https://x.com/cesi_officiel?s=21" target="_blank"><i class="fa-brands fa-twitter">
               <img class="twitter" 
-                          src="file:./Twitter.png"></i></a>
+                          src="./images/Twitter.png"></i></a>
               <a class="social-button tiktok" href=" https://www.tiktok.com/@bde_cesi_mtp?_t=ZN-8tezCXXQ3tO&_r=1" target="_blank"><i class="fa-brands fa-tiktok">
                       <img class="TikTok" 
-                          src="file:./tiktok.png"></i></a>
+                          src="./images/tiktok.png"></i></a>
               <a class="social-button instagram" href=" https://www.instagram.com/bde.cesi.montpellier?igsh=MWVhaWFvNGNvcDZuNw==" target="_blank"><i class="fa-brands fa-instagram">
               <img class="instagram" 
-                          src="file:./instagram.png"></i></a>
+                          src="./images/instagram.png"></i></a>
           </div>
         </div>
       </div>
     
       <!-- Bas de page -->
       <div class="footer-bottom">
-        <p>Copyright © 2025 - Tous droits réservés. <a href="file:./mentions_legales.html">Mentions légales</a></p>
+        <p>Copyright © 2025 - Tous droits réservés. <a href="./mentions_legales.html">Mentions légales</a></p>
       </div>
     </footer>
-    <script>
-        // Cibler le bouton hamburger et le menu de gauche
-    const menuToggle = document.getElementById('menu-toggle');
-    const mainMenu = document.getElementById('main-menu');
-    
-    // Ajouter un événement au clic pour afficher/masquer le menu
-    menuToggle.addEventListener('click', function() {
-      mainMenu.classList.toggle('active'); // Ajouter ou retirer la classe 'active' pour ouvrir/fermer
-    });
-    
-      </script>
+    <script src="../Controler/menu.js"></script> 
+    <script src="../Controler/voir_offre.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </html>

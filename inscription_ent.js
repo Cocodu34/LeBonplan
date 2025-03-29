@@ -2,10 +2,11 @@
 function validateForm() {
     // Cibler les inputs du formulaire
     const entreprise = document.querySelector('input[name="entreprise"]');
-    const lastname = document.querySelector('input[name="lastname"]');
-    const surname = document.querySelector('input[name="surname"]');
+    const nom = document.querySelector('input[name="nom"]');
+    const prenom = document.querySelector('input[name="prenom"]');
     const email = document.querySelector('input[name="email"]');
     const address = document.querySelector('input[name="address"]');
+    const SIRET = document.querySelector('input[name="SIRET"]');
     const SIREN = document.querySelector('input[name="SIREN"]');
     const domaine = document.querySelector('input[name="domaine"]');
     const password = document.querySelector('input[name="password"]');
@@ -22,14 +23,14 @@ function validateForm() {
     }
 
     // Vérifier si le nom est vide
-    if (lastname.value.trim() === '') {
-        displayError(lastname, 'Le nom est requis.');
+    if (nom.value.trim() === '') {
+        displayError(nom, 'Le nom est requis.');
         isValid = false;
     }
 
     // Vérifier si le prénom est vide
-    if (surname.value.trim() === '') {
-        displayError(surname, 'Le prénom est requis.');
+    if (prenom.value.trim() === '') {
+        displayError(prenom, 'Le prénom est requis.');
         isValid = false;
     }
 
@@ -45,6 +46,16 @@ function validateForm() {
     // Vérifier si l'adresse est vide
     if (address.value.trim() === '') {
         displayError(address, 'L\'adresse est requise.');
+        isValid = false;
+    }
+
+
+    // Vérifier si le numéro SIRET est valide
+    if (SIRET.value.trim() === '') {
+        displayError(SIRET, 'Le numéro de SIRET est requis.');
+        isValid = false;
+    } else if (!/^\d{9}$/.test(SIRET.value)) { // Vérification du format du SIRET (9 chiffres)
+        displayError(SIRET, 'Le numéro de SIRET doit être composé de 9 chiffres.');
         isValid = false;
     }
 
@@ -99,7 +110,6 @@ const form = document.querySelector('form');
 form.addEventListener('submit', function(event) {
     if (!validateForm()) {
         event.preventDefault();  // Empêche la soumission si le formulaire est invalide
-        alert("Veuillez corriger les erreurs avant de soumettre.");
     }
 });
 
@@ -112,11 +122,31 @@ inputs.forEach(input => {
 // Ajouter un événement au bouton de soumission
 const submitButton = document.getElementById('submit-btn');
 submitButton.addEventListener('click', function(event) {
-    event.preventDefault();  // Empêche la soumission par défaut
+    event.preventDefault();  // Empêche la soumission par défaut du formulaire
 
     if (validateForm()) {
-        window.location.href = 'accueil_ent.html';  // Redirige vers la page entreprise
+        // Création de l'objet FormData pour envoyer les données du formulaire
+        const formData = new FormData(document.querySelector('form'));
+
+        // Envoi des données via AJAX avec fetch()
+        fetch('inscription_ent.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())  // On récupère la réponse du serveur
+            .then(data => {
+                // Si l'inscription est réussie
+                if (data.includes("Inscription réussie")) {
+                    alert("Inscription réussie ! Bienvenue !");
+                    window.location.href = 'accueil_ent.html';  // Si tout va bien, redirige vers la page entreprise
+                } else {
+                    alert(data);  // Sinon, afficher l'erreur reçue du serveur
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'envoi du formulaire :', error);
+                alert("Une erreur est survenue. Veuillez réessayer.");
+            });
     } else {
-        alert("Veuillez corriger les erreurs avant de soumettre.");
     }
 });

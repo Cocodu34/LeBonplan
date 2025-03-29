@@ -309,8 +309,16 @@ button[type="submit"]:hover{
 	background-color: #2368e1;
 }
 
+button[type="submit_cv"]{
+	background-color: #ffffff;
+  size: 10 100;
+	color: rgb(0, 0, 0)!important;
+	font-weight: 75%;
+	border: 1px solid transparent;
+}
+
 input[type="file"] {
-    display: none;
+	color: white!important;
     
 }
 
@@ -353,7 +361,8 @@ input[type="radio"]{
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('./images/fond_connexion.png') no-repeat center center;
+    background: url('fond_connexion.png') no-repeat center center;
+    background-color:#000000;
     background-size: cover;
     z-index: -1; 
 }

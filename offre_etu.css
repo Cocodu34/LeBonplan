@@ -191,6 +191,25 @@ header nav.breadcrumb ol li.breadcrumb-item.active{
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 /*Body*/
 
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* espace entre les annonces */
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.annonce .box {
+  background-color: rgb(184, 184, 184);;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  justify-content: center;
+  align-items: center;
+}
+
 body{
 	background-color: #ffffff;
 	margin: 0;
