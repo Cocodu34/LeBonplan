@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let formData = new FormData();
         formData.append("file", file);
 
-        fetch("../Controler/CV.php", {
+        fetch("CV.php", {
             method: "POST",
             body: formData
         })
@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.includes("Inscription réussie")) {
                     alert("Inscription réussie !");
-                    window.location.href = 'accueil_etu.html'; // Rediriger vers la page d'accueil
+                    window.location.href = 'accueil_etu.php'; // Rediriger vers la page d'accueil
 
                 } else {
                     alert(data); // Afficher le message d'erreur reçu du PHP

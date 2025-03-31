@@ -1,6 +1,6 @@
 function verifierInscription() {
     console.log("js demare");
-    fetch("./get_role.php") // ou "../get_role.php" selon ta structure
+    fetch("get_role.php") // ou "../get_role.php" selon ta structure
     .then(response => {
         if (!response.ok) {
             throw new Error("Erreur serveur");
@@ -23,12 +23,12 @@ function verifierInscription() {
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "postuler.html";
+                    window.location.href = "postuler.php";
                 }
             });
         } else if (role === "etudiant") {
             // Accès direct à la page postuler
-            window.location.href = "postuler.html";
+            window.location.href = "postuler.php";
         } else {
             // Non connecté ou rôle inconnu
             Swal.fire({

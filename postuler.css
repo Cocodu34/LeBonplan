@@ -1,5 +1,12 @@
 /* == OVERALL DEFINITIONS == */
-
+a.button{
+	padding: 4px 8px;
+    background-color: white;
+    line-height: 18px;
+    border-radius: 4px;
+    color: #2368e1 !important;
+    font-weight: 600;
+}
 html{
 	font-size: calc(12px + 0.390625vw);
 }
@@ -237,7 +244,7 @@ main{
 
 .box2 {
     width: 100vw; /* Fait en sorte que chaque box prenne toute la largeur */
-    background:  url('./images/fond_connexion.png') no-repeat center center;
+    background:  url('fond_connexion.png') no-repeat center center;
     background-size: cover;
     color: white;
     padding: 40px;

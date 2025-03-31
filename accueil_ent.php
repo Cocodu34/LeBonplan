@@ -13,26 +13,44 @@ try {
     die("Erreur de connexion : " . $e->getMessage());
 }
 
-// ⚠️ Si on reçoit une requête AJAX de recherche, on retourne uniquement les résultats
+// Annonces les plus visitées
+$annonces_visitees = [];
+
+try {
+    $query = "SELECT a.Id_ann, a.titre, COUNT(*) AS nb_visites
+              FROM Visiter v
+              JOIN Annonce a ON v.Id_ann = a.Id_ann
+              GROUP BY v.Id_ann
+              ORDER BY nb_visites DESC
+              LIMIT 4";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $annonces_visitees = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+}
+
+// Requête AJAX de recherche
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $search = trim($_GET['search']);
-   
+
     $query = "SELECT 
-    u.nom,
-    u.prenom,
-    u.descriptif,
-    e.etablissement AS etablissement,
-    ent.domaine_activite AS entreprise
-FROM Utilisateur u
-LEFT JOIN Etudiant e ON u.Id_uti = e.Id_uti
-LEFT JOIN Entreprise ent ON u.Id_uti = ent.Id_uti
-WHERE 
-    u.nom LIKE :search
-    OR u.prenom LIKE :search
-    OR u.descriptif LIKE :search
-    OR e.etablissement LIKE :search
-    OR ent.domaine_activite LIKE :search;";
-   
+                u.nom,
+                u.prenom,
+                u.descriptif,
+                e.etablissement AS etablissement,
+                ent.domaine_activite AS entreprise
+              FROM Utilisateur u
+              LEFT JOIN Etudiant e ON u.Id_uti = e.Id_uti
+              LEFT JOIN Entreprise ent ON u.Id_uti = ent.Id_uti
+              WHERE 
+                u.nom LIKE :search
+                OR u.prenom LIKE :search
+                OR u.descriptif LIKE :search
+                OR e.etablissement LIKE :search
+                OR ent.domaine_activite LIKE :search";
+
     $stmt = $pdo->prepare($query);
     $stmt->execute(['search' => "%$search%"]);
     $annonces = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -43,19 +61,19 @@ WHERE
             echo '  <div class="box">';
             echo '    <h2 class="annonce-title">' . htmlspecialchars($annonce['nom']) .' '.  htmlspecialchars($annonce['prenom']) .'</h2>';
             if (!empty($annonce['etablissement'])) {
-    		echo '<h3 class="annonce-title" > Établissement : ' . htmlspecialchars($annonce['etablissement']).'</h3>';
-	    } elseif (!empty($annonce['entreprise'])) {
-    		echo '<h3 class="annonce-title" > Société : ' .  htmlspecialchars($annonce['entreprise']).'</h3>';
-	    }
+                echo '<h3 class="annonce-title"> Établissement : ' . htmlspecialchars($annonce['etablissement']) . '</h3>';
+            } elseif (!empty($annonce['entreprise'])) {
+                echo '<h3 class="annonce-title"> Société : ' .  htmlspecialchars($annonce['entreprise']) . '</h3>';
+            }
             echo '    <p class="annonce-mode">' . htmlspecialchars($annonce['descriptif']) . '</p>';
             echo '  </div>';
             echo '</div>';
         }
     } else {
-        echo '<p>Aucun profil trouvé.</p>';
+        echo '<p>Aucune offre trouvée.</p>';
     }
 
-    exit; // 👈 important : empêche d'afficher tout le HTML ci-dessous
+    exit;
 }
 ?>
 
@@ -67,7 +85,7 @@ WHERE
       <meta name="description" content="Postuler à une offre de stage">
       <title>Lebonplan</title>
       <link rel="stylesheet" href="accueil.css">
-      <link rel="icon" href="./images/logo_chap.png">
+      <link rel="icon" href="logo_chap.png">
       <style>
 
     .container {
@@ -93,7 +111,7 @@ WHERE
     </head> 
     <body>
     <header style="text-align: center; padding: 20px;">
-        <img src="./images/logo.png" alt="Logo" style="width: 500px;"> 
+        <img src="logo.png" alt="Logo" style="width: 500px;"> 
     </header>
     <header>
         <div class="navbar">
@@ -102,102 +120,92 @@ WHERE
             
             <nav class="nav-items-container">
                 <ul class="main-menu" id="main-menu">
-                    <li class="menu-item"><a href="./accueil_ent.HTML" class="top-level-entry active">Accueil</a></li>
-                    <li class="menu-item"><a href="./contact_ent.HTML" class="top-level-entry">Contact</a></li>
-                    <li class="menu-item"><a href="./entreprise.html" class="top-level-entry">Entreprise</a></li>
-                    <li class="menu-item"><a href="./offre_ent.html" class="top-level-entry">Offre</a></li>
+                    <li class="menu-item"><a href="accueil_ent.php" class="top-level-entry active">Accueil</a></li>
+                    <li class="menu-item"><a href="contact_ent.HTML" class="top-level-entry">Contact</a></li>
+                    <li class="menu-item"><a href="entreprise.html" class="top-level-entry">Entreprise</a></li>
+                    <li class="menu-item"><a href="offre_ent.html" class="top-level-entry">Offre</a></li>
                 </ul>
 
                 <!-- Liens de Connexion et S'inscrire à droite -->
                 <div class="auth-links">
-                    <a href="./accueil.html" class="button">Déconnexion</a>
+                    <a href="index.php" class="button">Déconnexion</a>
                 </div>
             </nav>
         </div>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./accueil_ent.HTML">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="accueil_ent.php">Accueil</a></li>
             </ol>
         </nav>
         <br>
      </header>
-     <main style=" background-color: #f9f9f9;">
-	
-	<!-- Barre de recherche -->
-	<br>
-	<br>
-	<div class="search-container" style="text-align:center; margin:20px; background-color: #f9f9f9;">
-  		<input type="text" id="search-input" class="search-input" placeholder="Rechercher un nom ou prénom de profil">
-  		<button type="button" class="search-button" onclick="rechercherOffres()">Rechercher</button>
-	</div>
+     
+<main style="background-color: #f9f9f9;">
+    <br><br>
+    <div class="search-container" style="text-align:center; margin:20px; background-color: #f9f9f9;">
+        <input type="text" id="search-input" class="search-input" placeholder="Rechercher un nom ou prénom de profil">
+        <button type="button" class="search-button" onclick="rechercherOffres()">Rechercher</button>
+    </div>
 
+    <div class="container" id="annonces-container" style="background-color: #f9f9f9;">
+        <!-- Résultats AJAX -->
+    </div>
 
-		<!-- Conteneur des annonces -->
-	<div class="container" id="annonces-container" style=" background-color: #f9f9f9;">
-  	<!-- Les résultats AJAX apparaîtront ici -->
-	</div>
+    <!-- Annonces les plus visitées dynamiques -->
+    <section class="job-listings" id="annonces_visitees">
+        <h2>Offres les plus visitées</h2>
+        <div class="jobs-grid">
+            <?php if (!empty($annonces_visitees)): ?>
+                <?php foreach ($annonces_visitees as $annonce): ?>
+                    <article class="job-card">
+                        <h3><?= htmlspecialchars($annonce['titre']) ?></h3>
+                        <form action="voir_offre.php" method="get">
+                            <input type="hidden" name="id_ann" value="<?= $annonce['Id_ann'] ?>">
+                        </form>
+                    </article>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Aucune annonce populaire pour le moment.</p>
+            <?php endif; ?>
+        </div>
+    </section>
 
-	<!-- Script JS AJAX -->
-	<script>
-  	function rechercherOffres() {
-      		const input = document.getElementById("search-input").value.trim();
-
-      // 👉 Si le champ est vide, on efface les résultats et on sort
-      		if (input === "") {
-          		document.getElementById("annonces-container").innerHTML = "";
-          		return;
-      		}
-
-      		const xhr = new XMLHttpRequest();
-      		xhr.open("GET", window.location.pathname + "?search=" + encodeURIComponent(input), true);
-      		xhr.onreadystatechange = function () {
-          		if (xhr.readyState === 4 && xhr.status === 200) {
-              			document.getElementById("annonces-container").innerHTML = xhr.responseText;
-          		}
-      		};
-      		xhr.send();
-  		}
-
-  		// Rechercher à chaque frappe (optionnel mais fluide)
-  		document.getElementById("search-input").addEventListener("keyup", function () {
-      		rechercherOffres();
-  	});
-	</script>
-        <!-- Job Listings Section -->
-        <section class="job-listings">
-          <h2>Offres récentes</h2>
-          <div class="jobs-grid">
-            <article class="job-card">
-              <h3>Technicien en électricité - Stage 8 semaines</h3>
-            </article>
-            <article class="job-card">
-              <h3>Boulanger patissier - Alternance 2 ans</h3>
-            </article>
-            <article class="job-card">
-              <h3>Développeur Web - Stage 6 mois</h3>
-            </article>
-            <article class="job-card">
-              <h3>Graphiste - Alternance 1 an</h3>
-            </article>
-          </div>
-        </section>
-      
-        <!-- Hero Section (Text Below Job Listings) -->
-        <section class="hero">
-          <div class="hero-content">
+    <section class="hero">
+        <div class="hero-content">
             <p>Vous recherchez un Stage ou une Alternance ?</p>
             <h1>LeBonPlan est là pour vous aider !</h1>
             <p>Avec plus de 15 millions d’élèves inscrits et 45 000 entreprises référencées, vous trouverez forcément une annonce qui vous correspond.</p>
-          </div>
-        </section>
-      </main>
-           
-</body> 
+        </div>
+    </section>
+</main>
+
+<script>
+function rechercherOffres() {
+    const input = document.getElementById("search-input").value.trim();
+
+    if (input === "") {
+        document.getElementById("annonces-container").innerHTML = "";
+        return;
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", window.location.pathname + "?search=" + encodeURIComponent(input), true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById("annonces-container").innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send();
+}
+
+document.getElementById("search-input").addEventListener("keyup", rechercherOffres);
+</script>
+    </body> 
 <footer class="footer">
   <div class="footer-container">
     <!-- Colonne 1 : Logos -->
     <div class="footer-column">
-      <img src="images/logo_chap.png" alt="Logo principal" class="footer-logo">
+      <img src="logo_chap.png" alt="Logo principal" class="footer-logo">
     </div>
 
     <!-- Colonne 2 : Coordonnées -->
@@ -212,11 +220,11 @@ WHERE
     <div class="footer-column">
       <h3>Navigation</h3>
       <ul class="footer-links">
-        <li><a href="./coockies_ent.html">Cookies</a></li>
-        <li><a href="./faq_ent.html">F.A.Q</a></li>
-        <li><a href="./cgu_ent.html">Conditions générales</a></li>
-        <li><a href="./protection_ent.html">Politique de protection des données</a></li>
-        <li><a href="./mentions_legales_ent.html">Mentions légales</a></li>
+        <li><a href="coockies_ent.html">Cookies</a></li>
+        <li><a href="faq_ent.html">F.A.Q</a></li>
+        <li><a href="cgu_ent.html">Conditions générales</a></li>
+        <li><a href="protection_ent.html">Politique de protection des données</a></li>
+        <li><a href="mentions_legales_ent.html">Mentions légales</a></li>
       </ul>
     </div>
 
@@ -226,23 +234,23 @@ WHERE
       <div class="social-buttons">
         <a class="social-button twitter" href="https://x.com/cesi_officiel?s=21" target="_blank"><i class="fa-brands fa-twitter">
           <img class="twitter" 
-                      src="./images/Twitter.png"></i></a>
+                      src="Twitter.png"></i></a>
           <a class="social-button tiktok" href=" https://www.tiktok.com/@bde_cesi_mtp?_t=ZN-8tezCXXQ3tO&_r=1" target="_blank"><i class="fa-brands fa-tiktok">
                   <img class="TikTok" 
-                      src="./images/tiktok.png"></i></a>
+                      src="tiktok.png"></i></a>
           <a class="social-button instagram" href=" https://www.instagram.com/bde.cesi.montpellier?igsh=MWVhaWFvNGNvcDZuNw==" target="_blank"><i class="fa-brands fa-instagram">
           <img class="instagram" 
-                      src="./images/instagram.png"></i></a>
+                      src="instagram.png"></i></a>
       </div>
     </div>
   </div>
 
   <!-- Bas de page -->
   <div class="footer-bottom">
-    <p>Copyright © 2025 - Tous droits réservés. <a href="./mentions_legales.html">Mentions légales</a></p>
+    <p>Copyright © 2025 - Tous droits réservés. <a href="mentions_legales.html">Mentions légales</a></p>
   </div>
 </footer>
-<script src="../Controler/menu.js"></script> 
-<script src="../Controler/voir_offre.js"></script> 
+<script src="menu.js"></script> 
+<script src="voir_offre.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

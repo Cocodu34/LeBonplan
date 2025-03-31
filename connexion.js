@@ -65,7 +65,6 @@ const form = document.querySelector('form');
 form.addEventListener('submit', function(event) {
     if (!validateForm()) {
         event.preventDefault();  // Empêche la soumission si le formulaire est invalide
-        alert("Veuillez corriger les erreurs avant de soumettre.");
     }
 });
 

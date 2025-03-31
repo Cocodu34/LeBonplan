@@ -319,7 +319,7 @@ button[type="submit"]:hover{
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('./images/fond_connexion.png') no-repeat center center;
+    background: url('fond_connexion.png') no-repeat center center;
     background-size: cover;
     z-index: -1; 
 }
@@ -341,7 +341,7 @@ button[type="submit"]:hover{
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('./images/fond_connexion.png') no-repeat center center;
+    background: url('fond_connexion.png') no-repeat center center;
     background-size: cover;
     filter: blur(8px);
     z-index: -1; 

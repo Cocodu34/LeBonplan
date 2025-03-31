@@ -98,6 +98,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
         .then(data => {
             if (data.includes("Inscription réussie")) {
                 alert("Inscription réussie !");
+                window.location.href = 'accueil_etu.php';
 
             } else {
                 alert(data); // Afficher le message d'erreur reçu du PHP

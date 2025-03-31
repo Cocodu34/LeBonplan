@@ -138,7 +138,7 @@ submitButton.addEventListener('click', function(event) {
                 // Si l'inscription est réussie
                 if (data.includes("Inscription réussie")) {
                     alert("Inscription réussie ! Bienvenue !");
-                    window.location.href = 'accueil_ent.html';  // Si tout va bien, redirige vers la page entreprise
+                    window.location.href = 'accueil_ent.php';  // Si tout va bien, redirige vers la page entreprise
                 } else {
                     alert(data);  // Sinon, afficher l'erreur reçue du serveur
                 }
