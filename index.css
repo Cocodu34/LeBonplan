@@ -183,7 +183,7 @@ header nav ol.breadcrumb li.breadcrumb-item:not(:last-child)::after{
 	display: inline-block;
     padding-right: 8px;
     padding-left: .8px;
-    color: #2368e1;
+    color: #173b7a;
     content: ">";
 }
 
@@ -245,212 +245,54 @@ button {
     text-transform: uppercase;
     width: 150px; /* Largeur fixe pour les boutons */
 }
-/* Section pour les offres d'emploi */
-.job-listings {
-    padding: 40px 20px;
-    background-color: #f9f9f9; /* Arrière-plan gris clair */
-}
-
-/* Titre de la section des offres */
-.job-listings h2 {
-    text-align: center; /* Centrage du titre */
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
-
-/* Grille des offres */
-.jobs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Disposition automatique */
-    gap: 20px; /* Espacement entre les cartes */
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Carte individuelle d'une offre */
-.job-card {
-    background-color: #fff;
-    border: 1px solid #ddd; /* Bordure légère */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    text-align: center;
-}
-
-/* Titre de l'offre d'emploi */
-.job-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 15px;
-}
-
-/* Bouton de lien vers l'offre */
-.job-link {
-    background-color: #007BFF; /* Fond bleu */
-    color: #fff; /* Texte blanc */
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-/* Section de présentation sous les offres */
-.hero {
-    background-color: #007BFF; /* Fond bleu */
-    color: #fff; /* Texte blanc */
-    padding: 60px 20px;
-    text-align: center;
-}
-
-/* Contenu de la section de présentation */
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Titre principal de la section */
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-/* Paragraphe de la section */
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-}
-
-/* Bouton de la section */
-.hero button {
-    background-color: #fff; /* Fond blanc */
-    color: #007BFF; /* Texte bleu */
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-}
+  
 
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 /*Footer*/
-.footer {
-    background-color: #000000;
-    color: #fff;
-    padding: 40px 20px;
-    font-size: 14px;
-  }
-  
-  .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  /* Colonnes du footer */
-  .footer-column {
-    flex: 1;
-    margin: 10px;
-    min-width: 200px;
-  }
-  
-  /* Titres des colonnes */
-  .footer-column h3 {
-    color: #ffd700;
-    margin-bottom: 10px;
+
+footer{
+	background-color: black;
+    color: white;
+    padding: 15px;
+    margin-top: 25px;
+    font-size: 1px;
+	font-style: italic;
+}
+
+.footer-logo {
+    width: auto;
+    height: 50px; /* Ajuste la taille des logos */
+}
+
+.footer-links {
+    color: yellow;
     font-size: 16px;
     font-weight: bold;
-  }
-  
-  /* Liens et texte */
-  .footer-column p,
-  .footer-links li {
-    margin: 5px 0;
-  }
-  
-  .footer-links a {
-    color: #ffd700;
-    text-decoration: none;
-  }
-  
-  .footer-links a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Logos */
-  .footer-logo {
-    max-width: 150px;
-    margin-bottom: 10px;
-  }
-  
-  .footer-logo-text {
-    max-width: 120px;
-  }
-  
-  /* Réseaux sociaux */
-  .social-buttons {
     display: flex;
-    gap: 10px;
-  }
-  
-  .social-button {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    width: 3.125rem;
-    height: 3.125rem;
-    border: 0.125rem solid transparent;
-    border-radius: 50%;
-    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #1a1a1a;
-    font-size: 18px;
-    text-decoration: none;
-    transition: all 0.5s ease;
-  }
-  
+}
 
-  .social-button:hover {
-    transform: scale(1.2);
-  }
-  
-  /* Bas de page */
-  .footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #000000;
-    padding-top: 10px;
-  }
-  
-  .footer-bottom a {
-    color: #ffd700;
+.footer-links a {
+    color: yellow;
     text-decoration: none;
-  }
-  
-  .footer-bottom a:hover {
+    margin: 5px 0;
+}
+
+.footer-links a:hover {
     text-decoration: underline;
-  }
-  
-  
-  
-  
-  .social-buttons .social-button:hover, .social-buttons .social-button:focus {
-    -webkit-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-  
-  .social-buttons .fa-twitter, .fa-facebook-f, .fa-tiktok, .fa-youtube, .fa-instagram {
-    font-size: 25px;
-  }
+}
 
-  .tiktok {
-    font-size: 25px !important;
+.left {
+    margin-right: 20px;
+}
 
-  }
+.right {
+    margin-left: 20px;
+}
+
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 /* --- Styles de base pour le bouton hamburger --- */
 .menu-toggle {
@@ -475,7 +317,6 @@ button {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    position: relative;
 }
 
 .main-menu {
@@ -493,8 +334,6 @@ button {
 .auth-links {
     display: flex;
     gap: 15px;
-    justify-content: flex-end; 
-    align-items: center; 
 }
 
 .auth-links a {
@@ -552,8 +391,6 @@ button {
         display: none; /* Masquer le bouton hamburger sur les grands écrans */
     }
 }
-
-
 
 
 

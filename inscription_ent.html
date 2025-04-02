@@ -6,11 +6,11 @@
       <title>Lebonplan</title>
       <link rel="stylesheet" href="inscription_ent.css">
       <link rel="verfi" href="inscription_ent.js">
-      <link rel="icon" href="logo_chap.png">
+      <link rel="icon" href="./logo_chap.png">
     </head> 
     <body>
     <header style="text-align: center; padding: 20px;">
-        <img src="logo.png" alt="Logo" style="width: 500px;"> 
+        <img src="logo.png" alt="Logo" style="width: 500px;">
     </header>
     <header>
         <div class="navbar">
@@ -19,66 +19,62 @@
             
             <nav class="nav-items-container">
                 <ul class="main-menu" id="main-menu">
-                    <li class="menu-item"><a href="index.php" class="top-level-entry active">Accueil</a></li>
+                    <li class="menu-item"><a href="index.html" class="top-level-entry active">Accueil</a></li>
                     <li class="menu-item"><a href="contact.HTML" class="top-level-entry">Contact</a></li>
                 </ul>
 
                 <!-- Liens de Connexion et S'inscrire à droite -->
                 <div class="auth-links">
-                    <a href="connexion.html" class="navitem">Connexion</a>
+                    <a href="choix_compte_conn.html" class="navitem">Connexion</a>
                     <a href="choix_compte_insc.html" class="button">S'inscrire</a>
                 </div>
             </nav>
         </div>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.php">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
                 <li class="breadcrumb-item"><a href="choix_compte_insc.html">Inscription</a></li>
             </ol>
         </nav>
         <br>
      </header>
 
-     <main>
-      <section class="form-section">
-        <section class="form-section-flou">
-          <h1 class="text-center">S'inscrire</h1>
-          <p class="text-justify">Vous n’avez pas de compte ? Créons en un ensemble ! C’est facile, rapide et gratuit !</p>
-          <article>
-            <form>
-              <label>Nom de l'entreprise*<br><input style="width: 99%" name="entreprise" type="text" size="50" value="" required ></label>
-              <br><br>
-              <label>Nom*<br><input style="width: 99%" name="lastname" type="text" size="50" value="" required ></label>
-              <br><br>
-              <label>Prénom*<br><input style="width: 99%" name="surname" type="text" size="50" value="" required ></label>
-              <br><br>
-              <label>Adresse mail*<br><input style="width: 99%" name="email" type="email" size="50" value="" required ></label>
-              <br><br>
-              <label>Adresse postale*<br><input style="width: 99%" name="address" type="text" size="50" value="" required ></label>
-              <br><br>
-              <label>Numéro de SIRET*<br><input style="width: 99%" name="SIRET" type="text" size="50" value="" required ></label>
-              <br><br>
-              <label>Numéro de SIREN*<br><input style="width: 99%" name="SIREN" type="text" size="50" value="" required ></label>
-              <br><br>
-              <label>Domaine d'activité*<br><input style="width: 99%" name="domaine" type="text" size="50" value="" required ></label>
-              <br><br>
-              <label>Mot de passe*<br><input style="width: 99%" name="password" type="password" size="50" value="" required ></label>
-              <div class="small grey"><em>Pour un mot de passe sécurisé, pensez à utiliser des majuscules, des chiffres et des caractères spéciaux.</em></div>
-              <br><br>
-              <div class="button-container">
-                <button id="submit-btn" type="submit" disabled>C'est parti !
-                </button>&nbsp;<button type="reset">Réinitialiser</button>
-              </div>
-              <br><br>
-              <div class="small grey"><em>*Données indispensables à l'envoie du formulaire.</em></div>
-              <div class="small grey"><em>En cliquant sur "C'est parti !", vous acceptez les <a href="cgu.html">conditions générales</a> et déclarez avoir pris connaissance de la <a href="file:./protection.html">politique de protection des données</a> de notre site.</em></div>
-              <div class="small grey"><em>Nous nous concervons le droit de supprimer automatiquement un compte innactif depuis 365 jours après un rappel, conformément à la <a href="file:./concervation.html">politique de concervation des données</a> de notre site.</em></div>
-            </form>
-          </article>
+    <main>
+        <section class="form-section">
+            <section class="form-section-flou">
+                <h1 class="text-center">S'inscrire</h1>
+                <p class="text-justify">Vous n’avez pas de compte ? Créons en un ensemble ! C’est facile, rapide et gratuit !</p>
+                <article>
+                    <form>
+                        <label>Nom de l'entreprise*<br><input style="width: 99%" name="entreprise" type="text" size="50" value="" required ></label>
+                        <br><br>
+                        <label>Nom*<br><input style="width: 99%" name="lastname" type="text" size="50" value="" required ></label>
+                        <br><br>
+                        <label>Prénom*<br><input style="width: 99%" name="surname" type="text" size="50" value="" required ></label>
+                        <br><br>
+                        <label>Adresse mail*<br><input style="width: 99%" name="email" type="email" size="50" value="" required ></label>
+                        <br><br>
+                        <label>Adresse postale*<br><input style="width: 99%" name="address" type="text" size="50" value="" required ></label>
+                        <br><br>
+                        <label>Numéro de SIREN*<br><input style="width: 99%" name="SIREN" type="text" size="50" value="" required ></label>
+                        <br><br>
+                        <label>Domaine d'activité*<br><input style="width: 99%" name="domaine" type="text" size="50" value="" required ></label>
+                        <br><br>
+                        <label>Mot de passe*<br><input style="width: 99%" name="password" type="password" size="50" value="" required ></label>
+                        <div class="small grey"><em>Pour un mot de passe sécurisé, pensez à utiliser des majuscules, des chiffres et des caractères spéciaux.</em></div>
+                        <br><br>
+                        <div class="button-container">
+                          <button id="submit-btn" type="submit" disabled>C'est parti !</button>&nbsp;<button type="reset">Réinitialiser</button>
+                        </div>
+                        <br><br>
+                        <div class="small grey"><em>*Données indispensables à l'envoie du formulaire.</em></div>
+                        <div class="small grey"><em>En cliquant sur "C'est parti !", vous acceptez les <a href="cgu.html">conditions générales</a> et déclarez avoir pris connaissance de la <a href="protection.html">politique de protection des données</a> de notre site.</em></div>
+                        <div class="small grey"><em>Nous nous concervons le droit de supprimer automatiquement un compte innactif depuis 365 jours après un rappel, conformément à la <a href="concervation.html">politique de concervation des données</a> de notre site.</em></div>
+                      </form>
+                </article>
+            </section>
         </section>
-      </section>
     </main>
-    
 </body>
 <footer class="footer">
     <div class="footer-container">
@@ -131,7 +127,6 @@
   </footer>
 
 <!-- Lien vers le fichier JavaScript -->
-<script src="inscription_ent.js"></script>
-<script src="menu.js"></script> 
+<script src="inscription_etu.js"></script> 
 
 </html>

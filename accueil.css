@@ -183,7 +183,7 @@ header nav ol.breadcrumb li.breadcrumb-item:not(:last-child)::after{
 	display: inline-block;
     padding-right: 8px;
     padding-left: .8px;
-    color: #2368e1;
+    color: #173b7a;
     content: ">";
 }
 

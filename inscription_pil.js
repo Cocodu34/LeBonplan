@@ -2,8 +2,8 @@
 function validateForm() {
     // Cibler les inputs du formulaire
     const title = document.querySelector('select[name="title"]');
-    const nom = document.querySelector('input[name="nom"]');
-    const prenom = document.querySelector('input[name="prenom"]');
+    const lastname = document.querySelector('input[name="lastname"]');
+    const surname = document.querySelector('input[name="surname"]');
     const email = document.querySelector('input[name="email"]');
     const password = document.querySelector('input[name="password"]');
 
@@ -19,14 +19,14 @@ function validateForm() {
     }
 
     // Vérifier si le nom est vide
-    if (nom.value.trim() === '') {
-        displayError(nom, 'Le nom est requis.');
+    if (lastname.value.trim() === '') {
+        displayError(lastname, 'Le nom est requis.');
         isValid = false;
     }
 
     // Vérifier si le prénom est vide
-    if (prenom.value.trim() === '') {
-        displayError(prenom, 'Le prénom est requis.');
+    if (surname.value.trim() === '') {
+        displayError(surname, 'Le prénom est requis.');
         isValid = false;
     }
 
@@ -78,31 +78,24 @@ const form = document.querySelector('form');
 form.addEventListener('submit', function(event) {
     if (!validateForm()) {
         event.preventDefault();  // Empêche la soumission si le formulaire est invalide
+        alert("Veuillez corriger les erreurs avant de soumettre.");
     }
 });
-// Gestion du formulaire en AJAX
-document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Empêcher le rechargement de la page
 
-    if (!validateForm()) {
-        return;
+// Ajouter les événements sur les champs de formulaire pour valider en temps réel
+const inputs = document.querySelectorAll('input');
+inputs.forEach(input => {
+    input.addEventListener('input', validateForm);
+});
+
+// Ajouter un événement au bouton de soumission
+const submitButton = document.getElementById('submit-btn');
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault();  // Empêche la soumission par défaut
+
+    if (validateForm()) {
+        window.location.href = 'accueil_etu.html';  // Redirige vers la page étudiante
+    } else {
+        alert("Veuillez corriger les erreurs avant de soumettre.");
     }
-
-    const formData = new FormData(this);
-
-    fetch('inscription_pilote.php', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.text()) // Récupérer la réponse du serveur
-        .then(data => {
-            if (data.includes("Inscription réussie")) {
-                alert("Inscription réussie !");
-                window.location.href = 'accueil_etu.php';
-
-            } else {
-                alert(data); // Afficher le message d'erreur reçu du PHP
-            }
-        })
-        .catch(error => console.error('Erreur lors de la requête:', error));
 });
