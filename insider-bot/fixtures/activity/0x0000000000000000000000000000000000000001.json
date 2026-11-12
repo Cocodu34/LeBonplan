@@ -1,0 +1,14 @@
+[
+ {
+  "type": "TRADE",
+  "timestamp": 1762777200,
+  "conditionId": "0xc3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3",
+  "usdcSize": 50
+ },
+ {
+  "type": "TRADE",
+  "timestamp": 1762947600,
+  "conditionId": "0xa1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+  "usdcSize": 12000
+ }
+]
